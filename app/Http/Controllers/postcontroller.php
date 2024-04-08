@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class postcontroller extends Controller
 {
@@ -81,6 +82,9 @@ class postcontroller extends Controller
      */
     public function destroy(string $id)
     {
+        if(! Gate::Allows('destroy-post', Post::all()->where('id',$id)->first())){
+            return redirect('/error')->with('message','У вас нет разрешения на удаление должности с номером '.$id);
+        }
         Post::destroy($id);
         return redirect('/posts');
     }

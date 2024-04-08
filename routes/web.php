@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\departmentcontroller;
+use App\Http\Controllers\logincontroller;
 use App\Http\Controllers\postcontroller;
 use App\Http\Controllers\workercontroller;
 use Illuminate\Support\Facades\Route;
@@ -16,11 +17,21 @@ Route::get('/department/{id}',[departmentcontroller::class,'show']);
 
 Route::get('/worker/{id}',[workercontroller::class,'show']);
 
-Route::get('/post',[postcontroller::class,'index']);
+
 Route::get('/posts',[postcontroller::class,'index']);
-Route::get('/posts/store',[postcontroller::class,'store']);
-Route::get('/posts/create',[postcontroller::class,'create']);
-Route::get('/posts/edit/{id}',[postcontroller::class,'edit']);
-Route::post('/posts/update/{id}',[postcontroller::class,'update']);
-Route::get('/posts/destroy/{id}',[postcontroller::class,'destroy']);
+Route::post('/posts/store',[postcontroller::class,'store']);
+Route::get('/posts/create',[postcontroller::class,'create'])->middleware('auth');
+Route::get('/posts/edit/{id}',[postcontroller::class,'edit'])->middleware('auth');
+Route::post('/posts/update/{id}',[postcontroller::class,'update'])->middleware('auth');
+Route::get('/posts/destroy/{id}',[postcontroller::class,'destroy'])->middleware('auth');
+
+Route::get('/login',[logincontroller::class,'login'])->name('login');
+Route::get('/logout',[logincontroller::class,'logout']);
+Route::post('/auth',[logincontroller::class,'authenticate']);
+
+Route::get('/error', function () {
+    return view('error',['message'=>session('message')]);
+});
+
+
 
