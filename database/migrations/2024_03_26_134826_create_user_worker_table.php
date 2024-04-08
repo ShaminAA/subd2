@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_post', function (Blueprint $table) {
+        Schema::create('worker_post', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('fk_worker');
-            $table->unsignedBigInteger('fk_post');
-            $table->foreign('fk_worker')->references('id')->on('user');
-            $table->foreign('fk_post')->references('id')->on('post');
+            $table->unsignedBigInteger('worker_id');
+            $table->unsignedBigInteger('post_id');
+            $table->foreign('worker_id')->references('id')->on('workers');
+            $table->foreign('post_id')->references('id')->on('posts');
             $table->double('share_bet')->nullable()->default(0.00)->comment('Must be between 0 and 1');
 
         });
