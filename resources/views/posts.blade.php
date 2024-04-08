@@ -14,14 +14,20 @@
                 <td> id</td>
                 <td> Должность </td>
                 <td> Отдел </td>
+                <td> Действия </td>
             </thead>
             @foreach($posts as $post)
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->name}}</td>
                     <td>{{$post->department->name}}</td>
+                    <td>
+                        <a href="{{url('posts/destroy/'.$post->id)}}">Удалить</a>
+                        <a href="{{url('posts/edit/'.$post->id)}}">Редактировать</a>
+                    </td>
                 </tr>
             @endforeach
         </table>
+{{$posts->links()}}
 </body>
 </html>

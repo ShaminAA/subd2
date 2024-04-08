@@ -13,5 +13,14 @@ Route::get('/h', function () {
 });
 Route::get('/department',[departmentcontroller::class,'index']);
 Route::get('/department/{id}',[departmentcontroller::class,'show']);
-Route::get('/post',[postcontroller::class,'index']);
+
 Route::get('/worker/{id}',[workercontroller::class,'show']);
+
+Route::get('/post',[postcontroller::class,'index']);
+Route::get('/posts',[postcontroller::class,'index']);
+Route::get('/posts/store',[postcontroller::class,'store']);
+Route::get('/posts/create',[postcontroller::class,'create']);
+Route::get('/posts/edit/{id}',[postcontroller::class,'edit']);
+Route::post('/posts/update/{id}',[postcontroller::class,'update']);
+Route::get('/posts/destroy/{id}',[postcontroller::class,'destroy']);
+
