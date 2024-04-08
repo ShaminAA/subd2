@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::defaultView('pagination::default');
 
         Gate::define('destroy-post', function (User $user, Post $post){
-            return $user->is_admin;
+            return $user->id==1;
         });
     }
 }

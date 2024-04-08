@@ -15,6 +15,7 @@ Route::get('/h', function () {
 Route::get('/department',[departmentcontroller::class,'index']);
 Route::get('/department/{id}',[departmentcontroller::class,'show']);
 
+Route::get('/workers',[workercontroller::class,'index']);
 Route::get('/worker/{id}',[workercontroller::class,'show']);
 
 

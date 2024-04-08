@@ -1,14 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style> .is-invalid{color: red;} </style>
-</head>
-<body>
+@extends('layout')
+@section('content')
+    <div class="row justify-content-center" style="margin-top: 70px;"> <!-- Добавляем пользовательский отступ сверху -->
+        <div class="col-6">
     <h2>Добавление должности</h2>
     <form method="post" action={{url('posts/')}}>
         @csrf
@@ -34,5 +27,6 @@
     <br>
 <input type="submit">
 </form>
-</body>
-</html>
+        </div>
+    </div>
+@endsection

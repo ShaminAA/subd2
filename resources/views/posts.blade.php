@@ -1,13 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layout')
+@section('content')
+    <div class="row justify-content-center">
+        <div class="col-4">
     <h2>Список должностей</h2>
         <table border="1">
             <thead>
@@ -23,11 +17,14 @@
                     <td>{{$post->department->name}}</td>
                     <td>
                         <a href="{{url('posts/destroy/'.$post->id)}}">Удалить</a>
+                    </td>
+                    <td>
                         <a href="{{url('posts/edit/'.$post->id)}}">Редактировать</a>
                     </td>
                 </tr>
             @endforeach
         </table>
 {{$posts->links()}}
-</body>
-</html>
+</div>
+    </div>
+@endsection

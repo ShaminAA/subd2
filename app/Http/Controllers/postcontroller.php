@@ -83,9 +83,26 @@ class postcontroller extends Controller
     public function destroy(string $id)
     {
         if(! Gate::Allows('destroy-post', Post::all()->where('id',$id)->first())){
-            return redirect('/error')->with('message','У вас нет разрешения на удаление должности с номером '.$id);
+
+            return redirect()->intended('posts')->withErrors([
+                'destroy'=>'У вас нет разрешения на удаление должности с номером '.$id,
+            ]);
         }
+        // Найти запись в таблице posts по идентификатору
+        $post = Post::find($id);
+
+        // Если запись найдена, обнулить все ее поля
+        if ($post) {
+
+
+            $post->worker_post->post_id = null;
+            $post->worker_post->save();
+
+        }
+
         Post::destroy($id);
-        return redirect('/posts');
+        return redirect('')->intended('posts')->withErrors([
+            'success' =>'Вы удалили должность с номером '.$id,
+        ]);
     }
 }

@@ -1,16 +1,11 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h2>{{$worker ? " Список должностей работника №".$worker->id: 'Неверный ID работника '}}</h2>
-    @if($worker)
-        <p>{{$worker->surname}} {{$worker->name}}</p>
+@extends('layout')
+@section('content')
+    <div class="row justify-content-center" style="margin-top: 70px;"> <!-- Добавляем пользовательский отступ сверху -->
+        <div class="col-6">
+            @if($worker)
+            <h2>{{$worker ? " Список должностей работника №".$worker->id: 'Неверный ID работника '}}</h2>
+
+                <p>{{$worker->surname}} {{$worker->name}}</p>
     <table border="1">
         <thead>
         <td> Должность </td>
@@ -25,6 +20,9 @@
             </tr>
         @endforeach
     </table>
-    @endif
-</body>
-</html>
+            @else
+                <h2>fdjkgd</h2>
+             @endif
+        </div>
+    </div>
+@endsection

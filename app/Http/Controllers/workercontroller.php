@@ -13,7 +13,7 @@ class workercontroller extends Controller
      */
     public function index()
     {
-        //
+        return view('workers',['workers'=>Worker::all()]);
     }
 
     /**
